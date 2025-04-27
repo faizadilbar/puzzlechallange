@@ -56,19 +56,43 @@ class _boardState extends State<board> {
     ));
   }
 
-  void onClick(index) {
-    if (index - 1 > 0 && number[index - 1] == 0 && index % 4 != 0 ||
-        index + 1 < 0 && number[index + 1] == 0 && (index + 1) != 0 ||
-        (index - 4 >= 0 && number[index - 4] == 0 ||
-            (index + 4 < 16 && number[index + 4] == 0))) {
-      setState(() {
-        number[number.indexOf(0)] = number[index];
-        number[index] = 0;
-        noofmoves++;
-      });
-    }
-    checkInner();
+ void onClick(index) {
+  // Left move
+  if (index % 4 != 0 && number[index - 1] == 0) {
+    setState(() {
+      number[number.indexOf(0)] = number[index];
+      number[index] = 0;
+      noofmoves++;
+    });
   }
+  // Right move
+  else if ((index + 1) % 4 != 0 && number[index + 1] == 0) {
+    setState(() {
+      number[number.indexOf(0)] = number[index];
+      number[index] = 0;
+      noofmoves++;
+    });
+  }
+  // Up move
+  else if (index - 4 >= 0 && number[index - 4] == 0) {
+    setState(() {
+      number[number.indexOf(0)] = number[index];
+      number[index] = 0;
+      noofmoves++;
+    });
+  }
+  // Down move
+  else if (index + 4 < 16 && number[index + 4] == 0) {
+    setState(() {
+      number[number.indexOf(0)] = number[index];
+      number[index] = 0;
+      noofmoves++;
+    });
+  }
+
+  checkInner();
+}
+
 
   bool isShorted(List numberList) {
     int first = number.first;
